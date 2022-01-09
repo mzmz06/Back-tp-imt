@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<title>Annuaire</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="/annuaire/css/proj.css">
+</head>
+
+<body>
+	<div>
+		<div class="leftBlock">
+			Recherche :
+			<form action="#" th:action="@{/annuaire/recherche}" method="get">
+				<p>
+					Nom: <input type="text" name="name" />
+				</p>
+				<p>
+					<input type="submit" value="Submit" />
+				</p>
+			</form>
+
+		</div>
+		
+			Modifier
+			<fieldset>
+			<form th:action="@{|/annuaire/modifier/${entry.getId()}|} » method="post">
+			ID: <span th:text="${entry.getId()}"> Id </span><br>
+			<label for="name">Nom :
+			<input type="text" id="name" name="name"
+			th:value="${entry.getName()}" size = "30"/></label><br>
+			<label for="surname">Prenom :
+			<input type="text" id="surmane" name="surname"
+			th:value="${entry.getSurname()}" size = "30"/></label><br>
+			<label for="phone">Telephone:
+			<input type="text" id="phone" name="phone"
+			th:value="${entry.getPhone()}" size = "30"/></label><br>
+			<label for="city">Ville:
+			<input type="text" id="city" name="city"
+			th:value="${entry.getCity()}" size = "30"/></label><br>
+			<br>
+			<input type="submit" value="Submit" />
+			</form>
+			
+	</fieldset>
+	<fieldset>
+		<form action="/annuaire/ajouter" method="post">
+			<label for="name">Nom :
+				<input type="text" id="name" name="name" size = "30"/>
+				</label><br>
+		<input type="submit" value="Submit" />
+			</form>
+		</fieldset>
+
+		<div>
+			Resultat :
+			<div class="divTable">
+
+				<div class="headRow">
+					<div class="headCell">Id</div>
+					<div class="headCell">Nom</div>
+					<div class="headCell">Telephone</div>
+				</div>
+
+
+
+				<th:block th:if="${entries.empty}">
+					<td colspan="2">Pas d'entree disponible</td>
+				</th:block>
+				<th:block th:each="entry: ${entries}">
+					<div class="divRow">
+						<div class="divCell" data-title="Id">
+							<span th:text="${entry.getId()}"> Id </span>
+						</div>
+						<div class="divCell" data-title="Name">
+							<span th:text="${entry.getName()}"> Nom </span>
+						</div>
+						<div class="divCell" data-title="Phone">
+							<span th:text="${entry.getPhone()}"> Telephone </span>
+						</div>
+					</div>
+				</th:block>
+
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

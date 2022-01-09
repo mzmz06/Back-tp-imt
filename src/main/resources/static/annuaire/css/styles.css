@@ -1,0 +1,65 @@
+
+label {
+  display: inline-block;
+  width: 350px;
+  text-align: right;
+}​
+
+input {
+ height: 20px;
+ width: 100px;
+ border: 1px solid #000;
+ margin-top: 10px;
+ float: left;
+}
+
+
+fieldset {
+  margin-bottom: 15px;
+  padding: 10px;
+  width: 400px;
+}
+
+
+
+.divTable {
+	display: table;
+	width: auto;
+	background-color: #929292;
+	border: 1px solid #666666;
+	border-spacing: 5px;
+	margin: 0 auto;
+	width: auto;
+	font-size: 30px;
+}
+
+.headRow {
+	display: table-row;
+	width: auto;
+	clear: both;
+}
+
+.divRow {
+	display: table-row;
+	width: auto;
+	clear: both;
+}
+
+.divCell {
+	float: left;
+	display: table-column;
+	width: 300px;
+	background-color: #eaeaea;
+}
+
+.headCell {
+	float: left;
+	display: table-column;
+	width: 300px;
+	background-color: #ff2600;
+}
+
+.leftBlock {
+	float: left;
+}
+
