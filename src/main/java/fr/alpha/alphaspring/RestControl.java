@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 
 
@@ -20,11 +21,13 @@ public class RestControl {
 	@Autowired
 	Dictionnaryitf di;
 	@GetMapping ("/entree")
+	@CrossOrigin(origins = "*")
 	public Collection<Person> getAll(){
 		return di.getAll();
 	}
 	
 	@PostMapping("/entree")
+	@CrossOrigin(origins = "*")
 	public ResponseEntity<String> add(@RequestBody Person newPerson) {
 		if (di.getFromId(newPerson.getId()) != null) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("Personne deja existante");
@@ -34,6 +37,7 @@ public class RestControl {
 	}
 	
 	@GetMapping ("/entree/{id}")
+	@CrossOrigin(origins = "*")
 	public ResponseEntity<?> getOne(@PathVariable int id) {
 		if (di.getFromId(id) == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Pas de personne trouvee avec cet id");
@@ -43,6 +47,7 @@ public class RestControl {
 	}
 	
 	@DeleteMapping ("/entree/{id}")
+	@CrossOrigin(origins = "*")
 	public ResponseEntity<?> removeOne(@PathVariable int id) {
 		if (di.getFromId(id)  == null) {
 			return new ResponseEntity<>("Pas de personne a supprimer avec cet id", HttpStatus.NOT_FOUND);
@@ -51,6 +56,7 @@ public class RestControl {
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 	@PutMapping ("/entree")
+	@CrossOrigin(origins = "*")
 	public ResponseEntity<?> remplace (@RequestBody Person updatedPerson){
 		if (di.getFromId(updatedPerson.getId()) == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Pas de personne a mettre a jour avec cet ID");
